@@ -1,3 +1,7 @@
 {
-  "extends": ["next/core-web-vitals", "prettier"]
+  "root": false,
+  "parserOptions": {
+    "project": "tsconfig.json"
+  },
+  "extends": ["../../.eslintrc.js", "next/core-web-vitals"]
 }
