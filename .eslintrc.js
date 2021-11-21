@@ -2,15 +2,17 @@ module.exports = {
   root: true,
   env: {
     es6: true,
+    es2021: true,
     node: true,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint'],
-  extends: ['prettier', 'eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  plugins: ['@typescript-eslint', 'prettier'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {
+    'prettier/prettier': 'error',
     'no-const-assign': 'error',
     'no-param-reassign': 'error',
     'prefer-const': 'error',
@@ -29,7 +31,6 @@ module.exports = {
       { argsIgnorePattern: '^_', varsIgnorePattern: '^_', ignoreRestSiblings: true },
     ],
     '@typescript-eslint/no-unsafe-assignment': 'off',
-    '@typescript-eslint/no-misused-promises': 'off',
     '@typescript-eslint/no-extra-non-null-assertion': 'error',
     '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
     '@typescript-eslint/no-non-null-assertion': 'error',
