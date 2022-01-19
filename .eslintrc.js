@@ -7,8 +7,11 @@ module.exports = {
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
+    tsconfigRootDir: __dirname,
     sourceType: 'module',
+    project: ['./packages/*/tsconfig.json'],
   },
+  ignorePatterns: ['/*.*'],
   plugins: ['@typescript-eslint', 'prettier'],
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'prettier'],
   rules: {

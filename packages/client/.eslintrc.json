@@ -1,7 +1,5 @@
 {
-  "root": false,
-  "parserOptions": {
-    "project": "tsconfig.json"
-  },
-  "extends": ["../../.eslintrc.js", "next/core-web-vitals"]
-}
+    "extends": ["next", "../../.eslintrc.js", "next/core-web-vitals"],
+    "root": false
+  }
+  
