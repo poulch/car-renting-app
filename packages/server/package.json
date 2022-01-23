@@ -8,19 +8,23 @@
     "lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
     "dev": "nodemon --config nodemon.json src/server.ts",
     "dev:debug": "nodemon --config nodemon.json --inspect-brk src/server.ts",
+    "db:migrate:up": "prisma migrate dev && prisma generate",
     "build": "tsc -p"
   },
   "dependencies": {
     "@prisma/client": "^3.5.0",
-    "express": "^4.17.1"
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "prisma": "^3.5.0",
+    "zod": "^3.11.6"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
     "@types/express": "^4.17.13",
-    "bcrypt": "^5.0.1",
+    "@types/jsonwebtoken": "^8.5.8",
     "eslint-plugin-node": "^11.1.0",
     "nodemon": "^2.0.15",
-    "prisma": "^3.5.0",
     "ts-node": "^10.4.0"
   }
 }
