@@ -11,8 +11,24 @@ datasource db {
 }
 
 model Car {
-  id   Int    @id @default(autoincrement())
-  name String
+  id                 Int      @id @default(autoincrement())
+  name               String
+  vin                String
+  reqistrationNumber String
+  brand              String
+  model              String
+  color              String
+  reviewData         DateTime
+  insuranceData      DateTime
+}
+
+model Client {
+  id      Int    @id @default(autoincrement())
+  company String
+  name    String
+  address String
+  pesel   String
+
 }
 
 model User {
