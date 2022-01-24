@@ -1,7 +1,7 @@
 import type { Response, Request, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import { prisma } from '../../db';
-import { BadRequestError, ConflictError, NotFoundError } from '../../utils/httpErrors';
+import { BadRequestError, ConflictError, UnautorizedError } from '../../utils/httpErrors';
 import { Role } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
@@ -15,13 +15,13 @@ export const loginController = async (req: Request, res: Response, next: NextFun
   });
 
   if (!user) {
-    return next(NotFoundError());
+    return next(UnautorizedError());
   }
 
   const userPasswordCorrect = await bcrypt.compare(password, user.password);
 
   if (!userPasswordCorrect) {
-    return next(ConflictError());
+    return next(UnautorizedError());
   }
 
   const tokenSecret = process.env.TOKEN_SECRET || 'secret';
