@@ -74,3 +74,26 @@ export const deleteById = async (req: Request, res: Response, next: NextFunction
 
   res.status(200).json({ data: car });
 };
+
+export const update = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+
+  const car = await prisma.car.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  if (!car) {
+    return next(NotFoundError());
+  }
+
+  const updatedCar = await prisma.car.update({
+    where: {
+      id: Number(id),
+    },
+    data: req.body,
+  });
+
+  res.status(200).json({ data: updatedCar });
+};
