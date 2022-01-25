@@ -9,4 +9,4 @@ carRouter.post('/', validate(carSchema), carController.add);
 carRouter.put('/', carController.add);
 carRouter.get('/', carController.getAll);
 carRouter.get('/:id', validate(idParamSchema), carController.getById);
-carRouter.delete('/', carController.add);
+carRouter.delete('/:id', validate(idParamSchema), carController.deleteById);
