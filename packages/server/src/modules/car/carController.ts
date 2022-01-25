@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import { prisma } from '../../db';
-import { ConflictError } from '../../utils/httpErrors';
+import { ConflictError, NotFoundError } from '../../utils/httpErrors';
 
 export const add = async (req: Request, res: Response, next: NextFunction) => {
   const { name, vin, reqistrationNumber, brand, model, color, reviewDate, insuranceData } =
@@ -30,4 +30,25 @@ export const add = async (req: Request, res: Response, next: NextFunction) => {
   });
 
   res.status(200).json({ data: newCar });
+};
+
+export const getAll = async (req: Request, res: Response) => {
+  const allCars = await prisma.car.findMany();
+  res.status(200).json({ data: allCars });
+};
+
+export const getById = async (req: Request, res: Response, next: NextFunction) => {
+  const { id } = req.params;
+
+  const car = await prisma.car.findUnique({
+    where: {
+      id: Number(id),
+    },
+  });
+
+  if (!car) {
+    return next(NotFoundError());
+  }
+
+  res.status(200).json({ data: car });
 };

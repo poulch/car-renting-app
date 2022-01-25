@@ -36,3 +36,9 @@ export const carSchema = object({
     }).refine(isISODate, { message: 'Insurance data is not a valid ISO string' }),
   }),
 });
+
+export const idParamSchema = object({
+  params: object({
+    id: string().refine((id) => !Number.isNaN(Number(id)), { message: 'Id must be numberical' }),
+  }),
+});
