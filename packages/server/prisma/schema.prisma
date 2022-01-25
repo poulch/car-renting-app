@@ -18,7 +18,7 @@ model Car {
   brand              String
   model              String
   color              String
-  reviewData         DateTime
+  reviewDate         DateTime
   insuranceData      DateTime
 }
 
