@@ -1,7 +1,8 @@
 import express from 'express';
 import * as carController from '../modules/car/carController';
 import { validate } from '../middlewares/validateHandler';
-import { carSchema, idParamSchema } from '../modules/car/carSchema';
+import { carSchema } from '../modules/car/carSchema';
+import { idParamSchema } from '../utils/globalSchema';
 
 export const carRouter = express.Router();
 
