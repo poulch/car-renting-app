@@ -27,7 +27,7 @@ model Client {
   company String
   name    String
   address String
-  pesel   String
+  pesel   Int    @unique
 
 }
 
