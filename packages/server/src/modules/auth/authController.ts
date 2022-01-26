@@ -5,6 +5,8 @@ import { BadRequestError, ConflictError, UnautorizedError } from '../../utils/ht
 import { Role } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
+const AUTH_COOKIE_TIL = 1000 * 60 * 60 * 8;
+
 export const loginController = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
 
@@ -26,8 +28,9 @@ export const loginController = async (req: Request, res: Response, next: NextFun
 
   const tokenSecret = process.env.TOKEN_SECRET || 'secret';
   const token = jwt.sign({ email }, tokenSecret);
+  res.cookie('auth', token, { expires: new Date(Date.now() + AUTH_COOKIE_TIL) });
 
-  res.status(200).json(token);
+  res.status(200).json(user);
 };
 
 export const registerController = async (req: Request, res: Response, next: NextFunction) => {
