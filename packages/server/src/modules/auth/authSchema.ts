@@ -14,6 +14,9 @@ export const registerValidation = object({
     confirmPassword: string({
       required_error: 'confirmPassword is required',
     }),
+  }).refine(({ password, confirmPassword }) => password === confirmPassword, {
+    message: 'Passwords must match',
+    path: ['confirmPassword'],
   }),
 });
 

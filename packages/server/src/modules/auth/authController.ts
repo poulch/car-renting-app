@@ -1,7 +1,7 @@
 import type { Response, Request, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import { prisma } from '../../db';
-import { BadRequestError, ConflictError, UnautorizedError } from '../../utils/httpErrors';
+import { ConflictError, UnautorizedError } from '../../utils/httpErrors';
 import { Role } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 
@@ -34,11 +34,7 @@ export const loginController = async (req: Request, res: Response, next: NextFun
 };
 
 export const registerController = async (req: Request, res: Response, next: NextFunction) => {
-  const { email, password, confirmPassword, name } = req.body;
-
-  if (password !== confirmPassword) {
-    return next(BadRequestError('Passwords are not equal'));
-  }
+  const { email, password, name } = req.body;
 
   const currentUser = await prisma.user.findUnique({
     where: {
